@@ -1,4 +1,3 @@
-
 import json
 import re
 import urllib.request
@@ -21,21 +20,21 @@ descriptionlist = []
 for part in parts:
     # get title
     title = part.getElementsByTagName('title')[0].firstChild.nodeValue.strip()
-    titlelist.append(title)
     # get link
     link = part.getElementsByTagName('link')[0].firstChild.nodeValue.strip()
-    linklist.append(link)
     # get description
     description = part.getElementsByTagName('description')[0].firstChild.wholeText.strip()
     description = re.sub("<[^>]*>", "", description)
     description = description[:-10]
-    descriptionlist.append(description)
     jsonconvertdict = { 'title' : title,
                         'link' : link,
-                        'description' : description }
+                        'description' : description, } 
     jsonlist.append(jsonconvertdict)
 # formatting dict for JSON
-jsonconvertdict = { 'feeds' : jsonlist }
+jsondict = { 'feeds' : jsonlist }
 # Get JSON encoding
-jsonencoded = json.dumps(jsonconvertdict, separators=(',', ':'))
-print(jsonencoded)
+jsonencoded = json.dumps(jsondict, separators=(',', ':'))
+outfile = open("store.json", "w")
+outfile.write(jsonencoded)
+outfile.close()
+

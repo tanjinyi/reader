@@ -1,0 +1,23 @@
+<html>
+	<head>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<!-- NOTE THAT JQUERY IS NECESSARY FOR HTML TO WORK-->
+<script>
+   $.getJSON('store.json', function(data) {
+       $.each(data.feeds, function(i, vari) {
+          var tblRow = vari.title + vari.link + vari.description
+           $(tblRow).appendTo("#feeds p");
+     });
+
+   });
+
+});
+</script>
+</head>
+<div class="feeds">
+<p>
+</p>
+</div>
+
+</body>
+</html>
